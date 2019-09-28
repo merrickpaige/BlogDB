@@ -26,7 +26,7 @@ STATICFILES_DIRS = ( os.path.join(PROJECT_ROOT, "static"),)
 SECRET_KEY = 'a_5fuyn1mkxp8n(s!0jtfo=ap0dr_tt)wg1&1r--8a_t+#-mmz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [' https://myawesomedjangoproj.herokuapp.com/']
 
