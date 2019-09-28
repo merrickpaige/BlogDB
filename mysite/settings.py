@@ -26,7 +26,7 @@ STATICFILES_DIRS = ( os.path.join(PROJECT_ROOT, "static"),)
 SECRET_KEY = 'a_5fuyn1mkxp8n(s!0jtfo=ap0dr_tt)wg1&1r--8a_t+#-mmz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -128,6 +128,8 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
@@ -135,6 +137,7 @@ LOGIN_URL = 'login'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+#MEDIA_URL = 'bucket.s3.amazonaws.com/media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
