@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 from django.conf import settings 
+from django.conf.urls.static import static
+
+#from django.conf import settings 
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -36,6 +39,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -157,6 +161,11 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S2_FILE_OVERWRITE = False 
 AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3Boto3Storage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
+#DEFAULT_FILE_STORAGE = 'django.core.files.storage'
+
+
 
 

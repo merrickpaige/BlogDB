@@ -7,17 +7,17 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-    # This tells how we want the profile to be printed in the event we need to proint out the profile.
-    # if the User is deleted, delete the profile also.
-    #def  save(self,*args, **kwargs):
-        #super().save(*args, **kwargs)
+     #This tells how we want the profile to be printed in the event we need to proint out the profile.
+     #if the User is deleted, delete the profile also.
+    def  save(self,*args, **kwargs):
+        super().save(*args, **kwargs)
 
-        #img = Image.open(self.image.path)
+        img = Image.open(self.image.path)
 
-        #if img.height > 300 or img.width > 300:
-            #output_size = (300,300)
-            #img.thumbnail(output_size)
-            #img.save(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
  
 # Create your models here.
