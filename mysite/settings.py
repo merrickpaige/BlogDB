@@ -31,7 +31,7 @@ SECRET_KEY = 'a_5fuyn1mkxp8n(s!0jtfo=ap0dr_tt)wg1&1r--8a_t+#-mmz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://myawesomedjangoproj.herokuapp.com/']
 
 
 # Application definition
@@ -129,8 +129,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -138,8 +143,7 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 
 #MEDIA_URL = 'bucket.s3.amazonaws.com/media'
 
@@ -161,10 +165,10 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S2_FILE_OVERWRITE = False 
 AWS_DEFAULT_ACL = None
-#DEFAULT_FILE_STORAGE = 'storages.backends.s3Boto3Storage'
+
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
-#DEFAULT_FILE_STORAGE = 'django.core.files.storage'
+
 
 
 
