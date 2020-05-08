@@ -1,31 +1,35 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin ,UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+#from blog.models import Post, Follower
 
-posts = [
-    {
-    'author':'Merrick Paige ',
-    'title':'Blog Post ',
-    'content':'First Post ',
-    'date_posted':'August 27,2019 '
-    },
-    {
-    'author':'Merrick Paige ',
-    'title':'Blog Post ',
-    'content':'First Post ',
-    'date_posted':'August 27,2019 '
-    }
-]
 
-#def home(request):
-    #context = {
-        #'posts': posts
-        #'#posts': Post.objects.all()    }
-    #return render(request, "blog/about.html", context)
-    #return HttpResponse("Hello, world. You're at the polls index.")
-    #return HttpResponse(" <h1>Blog Home</h1>")
+
+from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
+
+#from home.forms import HomeForm
+from .models import Post, Follower
+#from .models import Profile, RequestFriend
+
+def about( request):
+        #form = HomeForm()
+        posts = Post.objects.all().order_by('-created')
+        users = User.objects.exclude(id=request.user.id)
+        follower = Follower.objects.get(current_user=request.user)
+
+        followers = follower.users.all()
+
+        args = {
+             'users': users, 'followers': followers
+        }
+        return render(request, "blog/about.html", args)
+
+
+
 
 class PostListView(LoginRequiredMixin, ListView):
     model = Post
@@ -54,14 +58,16 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		    return True
 	    #return False
 
-class PostCreateView(LoginRequiredMixin,UserPassesTestMixin, CreateView):
+
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-       
+        
+           
         
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -73,16 +79,19 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     	if self.request.user == post.author:
 		    return True
 	    #return False
+    
+
+def make_followers(request, pk):
+    new_follower = User.objects.get(pk=pk)
+    
+    Follower.make_followers( request.user, new_follower)
+    return redirect('/')
+    #return redirect('blog:about')
+
+def remove_followers(request, pk):  
+    rem_follower = User.objects.get(pk=pk)    
+    #if operation == 'remove':
+    Follower.remove_followers(request.user, rem_follower)
+    return redirect('/')
 
 
-
-def about(request):
-    context = {
-        'posts': Post.objects.all()}
-
-    #return HttpResponse("Hello, world. You're at the polls index.")
-    return render(request, "blog/about.html", context)
-
-# Create your views here.
-
-# Create your views here.

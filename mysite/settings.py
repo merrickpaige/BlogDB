@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls',
     'storages',
+    'accounts',
 
 ]
 
@@ -148,6 +149,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
+#AUTH_USER_MODEL = 'accounts.FProfile'
 
 
 
@@ -165,7 +167,7 @@ EMAIL_HOST_PASSWORD = 'hhmvxbetaewepuov'
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 DEFAULT_FROM_EMAIL = 'paigescreation1@gmail.com'
 MAIL_USE_SSL =  int(os.environ.get('MAIL_USE_SSL',  True))
-
+#AWS_ACCESS_KEY_ID='AKIAJP3XMOG63O5V4H5Q'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
@@ -174,9 +176,10 @@ AWS_DEFAULT_ACL = None
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_heroku.settings(locals())
+
 
 
 

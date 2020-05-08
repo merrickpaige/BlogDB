@@ -1,9 +1,40 @@
 {% extends "blog/base.html" %}
 {% block content %}
+
 <title>Django Blog </title>
 
-    {% for post in posts %}
-        <h1>{{post.title}}</h1> 
-        <p> By  {{post.author}} on {{post.date_posted}}  </p>
+
+
+<article class="media content-section">
+        <div class="container text-left">
+
+				<h1>Friends</h1>
+
+<ul>
+	{% for follower in followers %}
+	
+        <li><a href="{% url 'blog:remove_followers' pk=follower.pk %}">{{ follower }}{{ follower.pk }}
+		</a></li>
     {% endfor %}
+</ul>
+
+
+
+                <h1>Users</h1>
+<ul>
+	{% for user in users %}
+	<li><a href="{% url 'blog:make_followers' pk=user.pk %}">{{ user }}</a></li>
+	
+          
+        
+    {% endfor %}
+</ul>
+
+
+
+			
+</div>
+</article>
+	</div>
+`
 {% endblock %} 

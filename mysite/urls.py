@@ -20,6 +20,9 @@ from django.contrib import admin
 from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
+#added to faciltate the last url re operations
+from users import views
+
 
 
 
@@ -38,10 +41,11 @@ urlpatterns = [
    
     path('register/', user_views.register,  name='register'),
     path('profile/', user_views.profile,  name='profile'),
-    path('blog/', include('blog.urls')),
-
+    path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
+    path('user_list/', include('users.urls')),
+    #url(r'^$', users_list, name='list'),
+    
 ]
-
 
 
 
