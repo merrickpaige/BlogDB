@@ -1,3 +1,6 @@
+#from django.views.decorators.csrf import csrf_exempt
+
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -19,12 +22,9 @@ def about( request):
         #form = HomeForm()
         posts = Post.objects.all().order_by('-created')
         users = User.objects.exclude(id=request.user.id)
-        follower = Follower.objects.get(current_user=request.user)
-
-        followers = follower.users.all()
-
+    
         args = {
-             'users': users, 'followers': followers
+             'users': users
         }
         return render(request, "blog/about.html", args)
 

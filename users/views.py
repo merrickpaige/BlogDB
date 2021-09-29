@@ -1,3 +1,5 @@
+#from django.views.decorators.csrf import csrf_exempt
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -27,51 +29,6 @@ def users_list(request):
 	}
 	return render(request, "blog/home.html", context)
 
-def send_friend_request(request, id):
-	if request.user.is_authenticated():
-		user = get_object_or_404(User, id=id)
-
-
-		frequest, created = FriendRequest.objects.get_or_create(
-			from_user=request.user,
-			to_user=user)
-		return HttpResponseRedirect('/blog')
-
-
-def send_friend_request(request, id):
-	if request.user.is_authenticated():
-		user = get_object_or_404(User, id=id)
-
-
-		frequest, created = FriendRequest.objects.get_or_create(
-			from_user=request.user,
-			to_user=user)
-		return HttpResponseRedirect('/users')
-
-def cancel_friend_request(request, id):
-	if request.user.is_authenticated():
-		user = get_object_or_404(User, id=id)
-		frequest = FriendRequest.objects.filter(
-			from_user=request.user,
-			to_user=user).first()
-		frequest.delete()
-		return HttpResponseRedirect('/users')
-
-def accept_friend_request(request, id):
-	from_user = get_object_or_404(User, id=id)
-	frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
-	user1 = frequest.to_user
-	user2 = from_user
-	user1.profile.friends.add(user2.profile)
-	user2.profile.friends.add(user1.profile)
-	frequest.delete()
-	return HttpResponseRedirect('/users/{}'.format(request.user.profile.slug))
-
-def delete_friend_request(request, id):
-	from_user = get_object_or_404(User, id=id)
-	frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
-	frequest.delete()
-	return HttpResponseRedirect('/users/{}'.format(request.user.profile.slug))
 
 
 
@@ -91,7 +48,10 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
+#@login_required
 @login_required
+
+#def update(request):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
