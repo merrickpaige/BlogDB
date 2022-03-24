@@ -169,8 +169,12 @@ EMAIL_HOST_PASSWORD = 'hhmvxbetaewepuov'
 DEFAULT_FROM_EMAIL = 'paigescreation1@gmail.com'
 MAIL_USE_SSL =  int(os.environ.get('MAIL_USE_SSL',  True))
 #AWS_ACCESS_KEY_ID='AKIAJP3XMOG63O5V4H5Q'
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+#AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_ACCESS_KEY_ID = os.environ.get('AKIAU5MEZRUIWHVL5LEO')
+
+#AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('bFSxjDvvFkAyICKzpbA1TcCqkmb4gXfq0JWCn03+')
+
 #AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('djangoprojectbucket')
 AWS_S2_FILE_OVERWRITE = False 
