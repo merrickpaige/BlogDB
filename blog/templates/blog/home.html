@@ -3,7 +3,7 @@
 {% for post in posts %}
 <article class="media content-section">
 
-    {% if post.author %}
+    {% if post.author.profile.image %}
 
     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url}}">
     {% endif %}

@@ -174,6 +174,7 @@ AWS_ACCESS_KEY_ID = os.environ.get('AKIAU5MEZRUIWHVL5LEO')
 
 #AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_SECRET_ACCESS_KEY = os.environ.get('bFSxjDvvFkAyICKzpbA1TcCqkmb4gXfq0JWCn03+')
+AWS_S3_REGION_NAME = 'us-east-2'
 
 #AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('djangoprojectbucket')
